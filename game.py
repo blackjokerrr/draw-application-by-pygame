@@ -14,23 +14,28 @@ class Game:
     
     def gameInteract(self):
         status = True
-        mouse_motion = 4
-        left_click = 5
-        right_click = 6
+        mouse_motion, scroll_mouse = 4, 2
+        down_click, up_click = 5, 6
+        size_up = 1
         
         while status:
             for event in pygame.event.get():
-                #print(event)
+                #Up width line
+                size_up += 1 if event.type == down_click and event.button == scroll_mouse else 0
+                
+                # close application
                 if event.type == pygame.QUIT:
                     status = False
-
+                
+                # pencil
                 elif event.type == mouse_motion and event.buttons[0] != 0:
-                    pygame.draw.line(self.display, (0, 0, 0), event.pos, event.pos, 5)
-                    
+                    pygame.draw.line(self.display, (0, 0, 0), event.pos, event.pos, size_up)
+                
+                # eraser 
                 elif event.type == mouse_motion and event.buttons[2] != 0:
                     pygame.draw.line(self.display, self.white, event.pos, event.pos, 100)
-                    
-                    
+                
+                #print(event)
             self.displayUpdate()
                 
     def run(self):
