@@ -28,7 +28,7 @@ class Game:
         elif events.type == mouse_motion and events.buttons[2] != 0:
             pygame.draw.line(self.display, self.white, events.pos, events.pos, 100)
         
-        print(self.size_up)
+        #print(self.size_up)
         
         
         
